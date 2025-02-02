@@ -1,99 +1,57 @@
 # Student Rank Predictor
 
-<!-- ## Setup
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt -->
-
-
-
-Student NEET Rank Predictor
 
 Project Overview
 
-The Student NEET Rank Predictor is a FastAPI-based application that analyzes students' quiz performance to generate insights and predict their possible NEET rank. The project involves:
+The Student NEET Rank Predictor is a Streamlit-based application that analyzes students' quiz performance and predicts their possible NEET rank. The project involves:
 
-Data Analysis: Identifying patterns in student performance across subjects and difficulty levels.
+Key Features
 
-Insights Generation: Highlighting weak areas, improvement trends, and performance gaps.
-
-Rank Prediction: Using a probabilistic model trained on past NEET scores to estimate a student's rank.
-
-Features
-
-Upload and analyze quiz performance data.
+Upload and analyze quiz performance data from historical_data.json and quiz_endpoint.json.
 
 Generate insights on subject-wise strengths and weaknesses.
 
-Predict the probable NEET rank based on historical performance.
+Predict the probable NEET rank using a Gradient Boosting Regressor trained on historical performance.
 
-Suggest eligible colleges based on predicted rank.
+Fetch and display quiz details (title, topic, difficulty, and questions count) from quiz_endpoint.json.
 
-Setup Instructions
+Adjust rank prediction dynamically based on accuracy changes.
 
-Prerequisites
 
-Ensure you have Python installed (>=3.7). Then, install the required dependencies:
-
-pip install fastapi>=0.68.0 uvicorn>=0.15.0 pandas>=1.3.0 numpy>=1.21.0 \
-scikit-learn>=0.24.2 matplotlib>=3.4.2 python-multipart>=0.0.5 pydantic>=1.8.2
-
-Running the Application
-
-Start the FastAPI server
-
-uvicorn main:app --reload
-
-Access API documentation
-
-Open http://127.0.0.1:8000/docs to explore API endpoints using Swagger UI.
-
-API Endpoints
-
-POST /analyze: Analyze quiz performance and generate insights.
-
-POST /predict-rank: Predict the NEET rank based on historical data.
-
-GET /predict-college/{rank}: Get eligible colleges based on predicted rank.
-
-Approach
+How It Works
 
 1. Data Analysis
 
-Parse student quiz submissions and historical performance.
+Parses student quiz submissions and historical performance from historical_data.json.
 
-Identify patterns based on subject accuracy, difficulty levels, and response trends.
+Identifies patterns based on subject accuracy and difficulty levels.
 
 2. Insights Generation
 
-Highlight weak subjects and areas requiring improvement.
+Extracts title, topic, difficulty level, and question count from quiz_endpoint.json.
 
-Track performance trends over time.
+Highlights weak subjects and areas needing improvement.
 
 3. Rank Prediction
 
-Train a Linear Regression model using past NEET score data.
+Trains a Gradient Boosting Regressor model using past NEET score data.
 
-Predict a student’s score using quiz performance metrics.
+Predicts a student’s NEET rank using accuracy inputs in Biology, Chemistry, and Physics.
 
-Map the predicted score to a rank based on historical NEET rank trends.
+Adjusts rank dynamically to ensure variation in predictions.
 
-Screenshots
+User Guide
 
-(Add relevant screenshots of data analysis, insights, and predictions here.)
+Uploading Quiz Data
 
-Future Improvements
+Ensure your historical_data.json file contains quiz performance details.
 
-Improve model accuracy with real NEET exam data.
+Ensure quiz_endpoint.json has quiz metadata like title, topic, and question count.
 
-Add support for adaptive learning recommendations.
+Using the Predictor
 
-Enhance visualization of insights and trends.
+Enter your Biology, Chemistry, and Physics accuracy percentages.
 
-Contributors
+Click Predict Rank to generate the estimated NEET rank.
 
-(Chaitanya Badukale)
-
-License
-
-MIT License
+The sidebar will display quiz details fetched from quiz_endpoint.json
